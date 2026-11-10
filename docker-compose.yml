@@ -1,0 +1,27 @@
+services:
+  loom-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    environment:
+      - LOOM_DATABASE_URL=sqlite:////data/loom.db
+      - LOOM_BACKEND_PORT=8000
+      - LOG_LEVEL=info
+    volumes:
+      - loom-data:/data
+    expose:
+      - "8000"
+
+  loom-frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8000"
+    depends_on:
+      - loom-backend
+
+volumes:
+  loom-data:
