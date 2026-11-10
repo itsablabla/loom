@@ -5,11 +5,11 @@ services:
       dockerfile: backend/Dockerfile
     restart: unless-stopped
     environment:
-      - LOOM_DATABASE_URL=sqlite:////data/loom.db
+      - LOOM_DATABASE_URL=sqlite:////home/appuser/.local/share/loom/loom.db
       - LOOM_BACKEND_PORT=8000
       - LOG_LEVEL=info
     volumes:
-      - loom-data:/data
+      - loom-data:/home/appuser/.local/share/loom
     expose:
       - "8000"
 
