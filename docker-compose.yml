@@ -15,8 +15,8 @@ services:
 
   loom-frontend:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8000"
